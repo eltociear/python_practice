@@ -65,27 +65,27 @@ win.title("神経衰弱")
 
 # イメージ作成
 for i in range(1, 14):
-    mstr = "img/card_club_" + str(i).zfill(2) + ".png"
+    mstr = "./asset/card_club_" + str(i).zfill(2) + ".png"
     img = tk.PhotoImage(file=mstr, width=409, height=600)
     img = img.subsample(6, 6)
     imgs.append(img)
 for i in range(1, 14):
-    mstr = "img/card_diamond_" + str(i).zfill(2) + ".png"
+    mstr = "./asset/card_diamond_" + str(i).zfill(2) + ".png"
     img = tk.PhotoImage(file=mstr, width=409, height=600)
     img = img.subsample(6, 6)
     imgs.append(img)
 for i in range(1, 14):
-    mstr = "img/card_heart_" + str(i).zfill(2) + ".png"
+    mstr = "./asset/card_heart_" + str(i).zfill(2) + ".png"
     img = tk.PhotoImage(file=mstr, width=409, height=600)
     img = img.subsample(6, 6)
     imgs.append(img)
 for i in range(1, 14):
-    mstr = "img/card_spade_" + str(i).zfill(2) + ".png"
+    mstr = "./asset/card_spade_" + str(i).zfill(2) + ".png"
     img = tk.PhotoImage(file=mstr, width=409, height=600)
     img = img.subsample(6, 6)
     imgs.append(img)
 
-img = tk.PhotoImage(file="img/card_back.png", width=409, height=600)
+img = tk.PhotoImage(file="./asset/card_back.png", width=409, height=600)
 img = img.subsample(6, 6)
 imgs.append(img)
 
