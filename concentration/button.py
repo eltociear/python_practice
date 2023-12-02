@@ -65,27 +65,27 @@ win.title("神経衰弱")
 
 # イメージ作成
 for i in range(1, 14):
-    mstr = "./asset/card_club_" + str(i).zfill(2) + ".png"
+    mstr = "concentration/asset/card_club_" + str(i).zfill(2) + ".png"
     img = tk.PhotoImage(file=mstr, width=409, height=600)
     img = img.subsample(6, 6)
     imgs.append(img)
 for i in range(1, 14):
-    mstr = "./asset/card_diamond_" + str(i).zfill(2) + ".png"
+    mstr = "concentration/asset/card_diamond_" + str(i).zfill(2) + ".png"
     img = tk.PhotoImage(file=mstr, width=409, height=600)
     img = img.subsample(6, 6)
     imgs.append(img)
 for i in range(1, 14):
-    mstr = "./asset/card_heart_" + str(i).zfill(2) + ".png"
+    mstr = "concentration/asset/card_heart_" + str(i).zfill(2) + ".png"
     img = tk.PhotoImage(file=mstr, width=409, height=600)
     img = img.subsample(6, 6)
     imgs.append(img)
 for i in range(1, 14):
-    mstr = "./asset/card_spade_" + str(i).zfill(2) + ".png"
+    mstr = "concentration/asset/card_spade_" + str(i).zfill(2) + ".png"
     img = tk.PhotoImage(file=mstr, width=409, height=600)
     img = img.subsample(6, 6)
     imgs.append(img)
 
-img = tk.PhotoImage(file="./asset/card_back.png", width=409, height=600)
+img = tk.PhotoImage(file="concentration/asset/card_back.png", width=409, height=600)
 img = img.subsample(6, 6)
 imgs.append(img)
 
@@ -105,7 +105,7 @@ for j in range(4):
         # ボタンのnew
         button = tk.Button(
             win,
-            text=num[button_name],
+            text=nums[button_name],
             width=62,
             height=92,
             bg="#ffffff",
@@ -113,7 +113,7 @@ for j in range(4):
         )
         ii = ii + 1
         # ボタンの配置
-        button.grid(colmun=i, row=j+1)
+        button.grid(column=i, row=j+1)
         button.bind("<ButtonPress>", btn_click)
 tk.Button(win, text="new game", command=new_game).grid(column=0, row=0)
 win.mainloop()
