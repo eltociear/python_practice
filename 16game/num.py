@@ -35,7 +35,7 @@ def button_func(event):
         else:
             n=n+1
     for itm in check[n]:
-        if item==kara:
+        if itm==kara:
             buttons[kara]["text"]=event.widget.cget("text")
             buttons[n]["text"]=""
             kara=n
