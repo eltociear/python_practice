@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# ↑日本語を使うためのおまじない
+
 import tkinter as tk #PythonでGUIを作成するための標準ライブラリ
 import random        #乱数を生成するためのライブラリ
 
@@ -47,7 +50,7 @@ def clear_chk():
     if n==16 and item["text"]=="":
         item["text"]="clear"
         #win.title("clear")
-    win.after(1000, clear_chk)
+    win.after(1000, clear_chk) #1秒ごとに自分を呼び出してクリアチェック
 
 win=tk.Tk() #このTKでウィンドウ作成
 
