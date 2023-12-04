@@ -23,6 +23,9 @@ BLUE = (0, 0, 255)
 # メインループ =============================================================
 run = True
 while run:
+    # 背景の描画
+    screen.fill(BLACK)
+
     # イベント処理
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -30,6 +33,10 @@ while run:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 run = False
+
+    # 画面の更新
+    pygame.display.update() # 何か処理をした場合、必ず画面を更新する
+    clock.tick(FPS)
 # ==========================================================================
 
 pygame.quit()
