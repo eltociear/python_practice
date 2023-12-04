@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import pygame
 from setting import * # *と打つと対象ファイルの全ての変数と関数を読み込む
+from game import Game
 
 pygame.init() # pygameの初期化しないとエラーになる
 
@@ -11,11 +12,17 @@ pygame.display.set_caption("Shooting Game")
 # FPSの設定
 clock = pygame.time.Clock()
 
+# ゲーム
+game = Game()
+
 # メインループ =============================================================
 run = True
 while run:
     # 背景の描画
     screen.fill(BLACK)
+
+    # ゲームの実行
+    game.run()
 
     # イベント処理
     for event in pygame.event.get():
