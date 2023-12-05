@@ -31,12 +31,14 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
 
+    # 移動の関数
     def move(self):
         self.rect.x += self.direction.x * self.speed
         self.check_off_screen('horizonal')
         self.rect.y += self.direction.y * self.speed
         self.check_off_screen('vertical')
 
+    # 画面外に出ないようにする関数
     def check_off_screen(self, direction):
         if direction == 'horizonal':
             if self.rect.left < 0:
