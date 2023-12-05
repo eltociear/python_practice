@@ -33,6 +33,9 @@ class Player(pygame.sprite.Sprite):
 
     # 移動の関数
     def move(self):
+        if self.direction.magnitude() != 0:
+            self.direction.normalize() # 上下足されてもベクトルの長さを1にする（これが無いと斜め移動が2倍速になる）
+
         self.rect.x += self.direction.x * self.speed
         self.check_off_screen('horizonal')
         self.rect.y += self.direction.y * self.speed
