@@ -1,9 +1,15 @@
 import pygame
 from setting import *
+from bullet import Bullet
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, groups, x, y):
         super().__init__(groups) # classの継承をした際に、親クラスの変数や関数を使用することができる
+
+        self.screen = pygame.display.get_surface()
+
+        # グループの作成
+        self.bullet_group = pygame.sprite.Group() # GroupSingleと違い、複数用のグループ
 
         # 画像の読み込み
         self.image_list = []
@@ -40,6 +46,9 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = 0
             self.index = PLAYER_IMG_IDLE # 通常時の画像に変更
 
+        if key[pygame.K_z]:
+            bullet = Bullet(self.bullet_group, self.rect.centerx, self.rect.top) # zキー押下時に弾がグループに追加される
+
     # 移動の関数
     def move(self):
         if self.direction.magnitude() != 0:
@@ -73,3 +82,7 @@ class Player(pygame.sprite.Sprite):
         self.input()
         self.move()
         self.update_image()
+
+        # グループの描画と更新
+        self.bullet_group.draw(self.screen) # Player内のself.screenに描画
+        self.bullet_group.update()
