@@ -27,5 +27,11 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.x += self.direction.x * self.speed
         self.rect.y += self.direction.y * self.speed
 
+    # 画面外に出たら消える
+    def check_off_screen(self):
+        if self.rect.top > screen_height:
+            self.kill()
+
     def update(self):
         self.move()
+        self.check_off_screen()

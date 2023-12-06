@@ -1,4 +1,5 @@
 import pygame
+import random
 from setting import *
 from player import Player
 from enemy import Enemy
@@ -30,7 +31,7 @@ class Game:
     def create_enemy(self):
         self.timer += 1
         if self.timer >= 50:
-            enemy = Enemy(self.enemy_group, 300, 100)
+            enemy = Enemy(self.enemy_group, random.randint(50, 550), 0) # 敵を作成 50から550の間でランダムにx座標を決定
             self.timer = 0
 
     def scroll_bg(self):
