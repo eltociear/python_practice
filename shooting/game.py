@@ -1,6 +1,7 @@
 import pygame
 from setting import *
 from player import Player
+from enemy import Enemy
 
 class Game:
     def __init__(self):
@@ -12,6 +13,9 @@ class Game:
         # 自機
         player = Player(self.player_group, 300, 500)
 
+        # 敵
+        enemy = Enemy(self.enemy_group, 300, 100)
+
         # 背景
         self.pre_bg_img = pygame.image.load("shooting/assets/img/background/bg.png") # 画像の読み込み
         self.bg_img = pygame.transform.scale(self.pre_bg_img, (screen_width, screen_width)) # 画像のサイズを変更
@@ -20,6 +24,7 @@ class Game:
 
     def create_group(self):
         self.player_group = pygame.sprite.GroupSingle() # 1体のプレイヤーを管理するグループ
+        self.enemy_group = pygame.sprite.Group() # 敵を管理するグループ
 
     def scroll_bg(self):
         self.bg_y = (self.bg_y + self.scroll_speed) % screen_height # self.bg_yが0から599までを繰り返す
@@ -32,3 +37,5 @@ class Game:
         # グループの描画と更新
         self.player_group.draw(self.screen) # Game内のself.screenに描画
         self.player_group.update()
+        self.enemy_group.draw(self.screen) # Game内のself.screenに描画
+        self.enemy_group.update()
