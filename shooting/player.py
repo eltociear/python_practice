@@ -26,6 +26,10 @@ class Player(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2() # 自機が上下左右どこに行くのか判断する変数
         self.speed = 5
 
+        # 弾
+        self.fire = False # 弾を撃ったかどうかの判定
+        self.timer = 0
+
     def input(self):
         key = pygame.key.get_pressed() # 押されているキーを取得
 
@@ -46,8 +50,16 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = 0
             self.index = PLAYER_IMG_IDLE # 通常時の画像に変更
 
-        if key[pygame.K_z]:
+        if key[pygame.K_z] and self.fire == False:
             bullet = Bullet(self.bullet_group, self.rect.centerx, self.rect.top) # zキー押下時に弾がグループに追加される
+            self.fire = True
+
+    def cooldown_bullet(self):
+        if self.fire:
+            self.timer += 1
+        if self.timer > 10:
+            self.fire = False
+            self.timer = 0
 
     # 移動の関数
     def move(self):
@@ -82,6 +94,7 @@ class Player(pygame.sprite.Sprite):
         self.input()
         self.move()
         self.update_image()
+        self.cooldown_bullet()
 
         # グループの描画と更新
         self.bullet_group.draw(self.screen) # Player内のself.screenに描画

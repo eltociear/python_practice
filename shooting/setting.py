@@ -2,6 +2,9 @@
 screen_width = 600
 screen_height = 600
 
+# 弾の設定
+BULLET_SPEED = 8
+
 # FPSの設定
 FPS = 60
 

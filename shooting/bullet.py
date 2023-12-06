@@ -8,7 +8,19 @@ class Bullet(pygame.sprite.Sprite):
         # 画像の読み込み
         self.image = pygame.Surface((10, 30))
         self.image.fill((GREEN))
-        self.rect = self.image.get_rect(center=(x, y)) #center(中心)を(x, y)に設定
+        self.rect = self.image.get_rect(midbottom=(x, y)) #center(中心)を(x, y)に設定
+
+        # 移動
+        self.speed = BULLET_SPEED
+
+    def check_off_screen(self):
+        if self.rect.bottom < 0:
+            self.kill() # 自分自身をグループから削除
+
+    # 移動の関数
+    def move(self):
+        self.rect.y -= self.speed
 
     def update(self):
-        pass # 今回は何もしない
+        self.move()
+        self.check_off_screen()
