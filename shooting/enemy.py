@@ -7,8 +7,15 @@ class Enemy(pygame.sprite.Sprite):
         super().__init__(groups)
 
         # 画像の読み込み
+        self.image_list = []
         self.image = pygame.Surface((50, 50))
-        self.image.fill(BLUE)
+        for i in range(5):
+            image = pygame.image.load(f'shooting/assets/img/enemy/{i}.png')
+            self.image_list.append(image)
+
+        self.index = 0
+        self.pre_image = self.image_list[0]
+        self.image = pygame.transform.scale(self.pre_image, (50, 50))
         self.rect = self.image.get_rect(center=(x, y))
 
         # 移動
@@ -27,6 +34,14 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.x += self.direction.x * self.speed
         self.rect.y += self.direction.y * self.speed
 
+    def animation(self):
+        self.index += 0.15
+        if self.index >= len(self.image_list):
+            self.index = 0
+
+        self.pre_image = self.image_list[int(self.index)]
+        self.image = pygame.transform.scale(self.pre_image, (50, 50))
+
     # 画面外に出たら消える
     def check_off_screen(self):
         if self.rect.top > screen_height:
@@ -35,3 +50,4 @@ class Enemy(pygame.sprite.Sprite):
     def update(self):
         self.move()
         self.check_off_screen()
+        self.animation()
