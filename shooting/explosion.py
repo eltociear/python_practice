@@ -17,7 +17,7 @@ class Explosion(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=(x, y)) # 画像の中心座標を(x, y)に設定
 
     def animation(self):
-        self.index += 0.2
+        self.index += 0.2 # 爆発の速度を調整
         if self.index < len(self.image_list):
             self.pre_image = self.image_list[int(self.index)]
             self.image = pygame.transform.scale(self.pre_image, (50, 50))

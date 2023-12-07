@@ -93,7 +93,7 @@ class Player(pygame.sprite.Sprite):
     # 敵との衝突判定
     def collision_enemy(self):
         for enemy in self.enemy_group:
-            if self.rect.colliderect(enemy.rect):
+            if self.rect.colliderect(enemy.rect) and enemy.alive:
                 self.health -= 1
 
         if self.health <= 0:
