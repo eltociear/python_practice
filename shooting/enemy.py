@@ -38,6 +38,10 @@ class Enemy(pygame.sprite.Sprite):
         # 爆発
         self.explosion = False
 
+        # 効果音
+        # self.explosion_sound = pygame.mixer.Sound("shooting/assets/sound/explosion.mp3")
+        # self.explosion_sound.set_volume(0.2)
+
     def move(self):
         # ジグザグに折り返しさせる
         self.timer += 1
@@ -79,6 +83,7 @@ class Enemy(pygame.sprite.Sprite):
             self.speed = 0
             explosion = Explosion(self.explosion_group, self.rect.centerx, self.rect.centery) # 第一引数にグループを指定、第二引数x、第三引数yは敵の画像の中心座標
             self.explosion = True
+            # self.explosion_sound.play()
 
         if self.explosion == True and len(self.explosion_group) == 0:
             self.kill()

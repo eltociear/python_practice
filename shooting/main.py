@@ -3,6 +3,7 @@ import pygame
 from setting import * # *と打つと対象ファイルの全ての変数と関数を読み込む
 from game import Game
 
+pygame.mixier.init() # 音声ファイルを使用する場合は必ず記述、これがないとバグやエラーが発生する
 pygame.init() # pygameの初期化しないとエラーになる
 
 # ウインドウの作成

@@ -35,6 +35,10 @@ class Player(pygame.sprite.Sprite):
         self.health = 1
         self.alive = True
 
+        # 効果音
+        # self.shot_sound = pygame.mixer.Sound("shooting/assets/sound/shot.mp3")
+        # self.shot_sound.set_volume(0.2)
+
     def input(self):
         key = pygame.key.get_pressed() # 押されているキーを取得
 
@@ -58,6 +62,7 @@ class Player(pygame.sprite.Sprite):
         if key[pygame.K_z] and self.fire == False:
             bullet = Bullet(self.bullet_group, self.rect.centerx, self.rect.top) # zキー押下時に弾がグループに追加される
             self.fire = True
+            # self.shot_sound.play()
 
     def cooldown_bullet(self):
         if self.fire:

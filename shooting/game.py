@@ -27,6 +27,11 @@ class Game:
         # ゲームオーバー
         self.game_over = False
 
+        # BGM
+        # pygame.mixer.music.load("shooting/assets/sound/bgm.mp3")
+        # pygame.mixer.music.play(-1) # -1を指定するとループ再生
+        # pygame.mixer.music.set_volume(0.3) # 音量の設定
+
     def create_group(self):
         self.player_group = pygame.sprite.GroupSingle() # 1体のプレイヤーを管理するグループ
         self.enemy_group = pygame.sprite.Group() # 敵を管理するグループ
