@@ -12,7 +12,7 @@ class Game:
         self.create_group()
 
         # 自機
-        player = Player(self.player_group, 300, 500)
+        self.player = Player(self.player_group, 300, 500) # selfをつけるとクラス内のどこでも使える変数になる
 
         # 敵
         self.timer = 0 # 敵を作成するタイミングを管理するタイマー
@@ -31,7 +31,7 @@ class Game:
     def create_enemy(self):
         self.timer += 1
         if self.timer >= 50:
-            enemy = Enemy(self.enemy_group, random.randint(50, 550), 0) # 敵を作成 50から550の間でランダムにx座標を決定
+            enemy = Enemy(self.enemy_group, random.randint(50, 550), 0, self.player.bullet_group) # 敵を作成 50から550の間でランダムにx座標を決定
             self.timer = 0
 
     def scroll_bg(self):

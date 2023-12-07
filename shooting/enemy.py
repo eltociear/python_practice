@@ -3,8 +3,11 @@ import random
 from setting import *
 
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, groups, x, y):
+    def __init__(self, groups, x, y, bullet_group):
         super().__init__(groups)
+
+        # 弾との衝突判定のためにグループを作成
+        self.bullet_group = bullet_group
 
         # 画像の読み込み
         self.image_list = []
@@ -23,6 +26,10 @@ class Enemy(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2(random.choice(move_list), 1) # 最初の数字がx方向、2番目の数字がy方向（デフォルトは0, 0）、move_listからランダムに選択
         self.speed = 1
         self.timer = 0
+
+        # 体力
+        self.health = 3
+        self.alive = True
 
     def move(self):
         # ジグザグに折り返しさせる
@@ -47,7 +54,23 @@ class Enemy(pygame.sprite.Sprite):
         if self.rect.top > screen_height:
             self.kill()
 
+    # 弾との衝突判定
+    def collision_bullet(self):
+        for bullet in self.bullet_group:
+            if self.rect.colliderect(bullet.rect):
+                bullet.kill() # 弾を消す
+                self.health -= 1 # 体力を減らす
+
+        if self.health <= 0:
+            self.alive = False
+
+    def check_alive(self):
+        if self.alive == False:
+            self.kill()
+
     def update(self):
         self.move()
         self.check_off_screen()
         self.animation()
+        self.collision_bullet()
+        self.check_alive()
