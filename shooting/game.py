@@ -12,7 +12,7 @@ class Game:
         self.create_group()
 
         # 自機
-        self.player = Player(self.player_group, 300, 500) # selfをつけるとクラス内のどこでも使える変数になる
+        self.player = Player(self.player_group, 300, 500, self.enemy_group) # selfをつけるとクラス内のどこでも使える変数になる
 
         # 敵
         self.timer = 0 # 敵を作成するタイミングを管理するタイマー

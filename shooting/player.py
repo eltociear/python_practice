@@ -3,13 +3,14 @@ from setting import *
 from bullet import Bullet
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, groups, x, y):
+    def __init__(self, groups, x, y, enemy_group):
         super().__init__(groups) # classの継承をした際に、親クラスの変数や関数を使用することができる
 
         self.screen = pygame.display.get_surface()
 
         # グループの作成
         self.bullet_group = pygame.sprite.Group() # GroupSingleと違い、複数用のグループ
+        self.enemy_group = enemy_group
 
         # 画像の読み込み
         self.image_list = []
@@ -29,6 +30,10 @@ class Player(pygame.sprite.Sprite):
         # 弾
         self.fire = False # 弾を撃ったかどうかの判定
         self.timer = 0
+
+        # 体力
+        self.health = 1
+        self.alive = True
 
     def input(self):
         key = pygame.key.get_pressed() # 押されているキーを取得
@@ -85,6 +90,19 @@ class Player(pygame.sprite.Sprite):
             if self.rect.bottom > screen_height:
                 self.rect.bottom = screen_height
 
+    # 敵との衝突判定
+    def collision_enemy(self):
+        for enemy in self.enemy_group:
+            if self.rect.colliderect(enemy.rect):
+                self.health -= 1
+
+        if self.health <= 0:
+            self.alive = False
+
+    def check_alive(self):
+        if self.alive == False:
+            self.kill()
+
     # 画像を更新する関数
     def update_image(self):
         self.pre_image = self.image_list[self.index]
@@ -99,3 +117,5 @@ class Player(pygame.sprite.Sprite):
         # グループの描画と更新
         self.bullet_group.draw(self.screen) # Player内のself.screenに描画
         self.bullet_group.update()
+        self.collision_enemy()
+        self.check_alive()
