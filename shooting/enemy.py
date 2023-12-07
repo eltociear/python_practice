@@ -1,13 +1,17 @@
 import pygame
 import random
 from setting import *
+from explosion import Explosion
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, groups, x, y, bullet_group):
         super().__init__(groups)
 
-        # 弾との衝突判定のためにグループを作成
+        self.screen = pygame.display.get_surface()
+
+        # グループ
         self.bullet_group = bullet_group
+        self.explosion_group = pygame.sprite.Group()
 
         # 画像の読み込み
         self.image_list = []
@@ -31,6 +35,9 @@ class Enemy(pygame.sprite.Sprite):
         self.health = 3
         self.alive = True
 
+        # 爆発
+        self.explosion = False
+
     def move(self):
         # ジグザグに折り返しさせる
         self.timer += 1
@@ -42,12 +49,15 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.y += self.direction.y * self.speed
 
     def animation(self):
-        self.index += 0.15
-        if self.index >= len(self.image_list):
-            self.index = 0
+        if self.alive:
+            self.index += 0.15
+            if self.index >= len(self.image_list):
+                self.index = 0
 
-        self.pre_image = self.image_list[int(self.index)]
-        self.image = pygame.transform.scale(self.pre_image, (50, 50))
+            self.pre_image = self.image_list[int(self.index)]
+            self.image = pygame.transform.scale(self.pre_image, (50, 50))
+        else:
+            self.image.set_alpha(0) # 0にすると透明になる(値は0-255)
 
     # 画面外に出たら消える
     def check_off_screen(self):
@@ -65,7 +75,12 @@ class Enemy(pygame.sprite.Sprite):
             self.alive = False
 
     def check_alive(self):
-        if self.alive == False:
+        if self.alive == False and self.explosion == False:
+            self.speed = 0
+            explosion = Explosion(self.explosion_group, self.rect.centerx, self.rect.centery) # 第一引数にグループを指定、第二引数x、第三引数yは敵の画像の中心座標
+            self.explosion = True
+
+        if self.explosion == True and len(self.explosion_group) == 0:
             self.kill()
 
     def update(self):
@@ -74,3 +89,7 @@ class Enemy(pygame.sprite.Sprite):
         self.animation()
         self.collision_bullet()
         self.check_alive()
+
+        # グループの描画と更新
+        self.explosion_group.draw(self.screen)
+        self.explosion_group.update()
