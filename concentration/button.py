@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
-
 import tkinter as tk
 import random
 
-w = None
-w2 = None
-imgs = []
+w = None # 1枚目
+w2 = None # 2枚目
+imgs = [] # 画像情報の配列
 
 # クリックイベント
 def btn_click(event):
     global w, w2
     if w2 != None: # 裏返り待ち
         return
-    if event.widget.cget('image') != str(imgs[25]): # 裏返り済み
+    if event.widget.cget('image') != str(imgs[52]): # 裏返り済み
         print(event.widget.cget('image'))
         return
 
@@ -63,11 +62,11 @@ win = tk.Tk()
 win.geometry("900x420")
 win.title("神経衰弱")
 
-# イメージ作成
+# TODO: イメージ作成（関数化したい）
 for i in range(1, 14):
     mstr = "concentration/asset/card_club_" + str(i).zfill(2) + ".png"
     img = tk.PhotoImage(file=mstr, width=409, height=600)
-    img = img.subsample(6, 6)
+    img = img.subsample(6, 6) # 画像の縮小
     imgs.append(img)
 for i in range(1, 14):
     mstr = "concentration/asset/card_diamond_" + str(i).zfill(2) + ".png"
@@ -87,7 +86,7 @@ for i in range(1, 14):
 
 img = tk.PhotoImage(file="concentration/asset/card_back.png", width=409, height=600)
 img = img.subsample(6, 6)
-imgs.append(img)
+imgs.append(img) # 裏面を52番目に追加
 
 # 番号
 nums = []

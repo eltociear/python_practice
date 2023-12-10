@@ -4,4 +4,4 @@
 refs: https://www.youtube.com/watch?v=EUx2IVoNfX0
 
 bugs: 1
-- クリックしても動作しない
+- new gameボタンが動作しない
