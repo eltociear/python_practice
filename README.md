@@ -1,2 +1,2 @@
-# python_game_practice
+# python_practice
 Pythonの勉強用
