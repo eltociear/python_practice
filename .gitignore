@@ -1,1 +1,5 @@
+# pygameのキャッシュファイル
 __pycache__/
+
+# testファイル
+*.test
