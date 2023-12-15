@@ -27,7 +27,7 @@ class Game(object):
         # メニューを設定。後述のMenuクラスを初期化
         self.menu = Menu(("Start Game", "About", "Quit"), font_color=WHITE, font_size=60)
         # プレイヤーを初期化
-        self.player = Player(32, 128, 'player.png')
+        self.player = Player(32, 128, 'assets/player.png')
 
         # 水平ブロック
         self.horizontal_blocks = pygame.sprite.Group()
