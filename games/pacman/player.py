@@ -84,23 +84,23 @@ class Player(pygame.sprite.Sprite):
             if self.change_x > 0:
                 # 右移動のアニメーションを表示
                 self.move_right_animation.update(10)
-                self.image = self.move_right_animation.get_image()
+                self.image = self.move_right_animation.get_current_image()
             # x方向の移動が負
             elif self.change_x < 0:
                 # 左移動のアニメーションを表示
                 self.move_left_animation.update(10)
-                self.image = self.move_left_animation.get_image()
+                self.image = self.move_left_animation.get_current_image()
 
             # y方向の移動が正
             if self.change_y > 0:
                 # 下移動のアニメーションを表示
                 self.move_down_animation.update(10)
-                self.image = self.move_down_animation.get_image()
+                self.image = self.move_down_animation.get_current_image()
             # y方向の移動が負
             elif self.change_y < 0:
                 # 上移動のアニメーションを表示
                 self.move_up_animation.update(10)
-                self.image = self.move_up_animation.get_image()
+                self.image = self.move_up_animation.get_current_image()
         # 爆発している場合
         else:
             if self.explosion_animation.index == self.explosion_animation.get_length() - 1:
