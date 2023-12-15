@@ -1,9 +1,6 @@
 import pygame
 from game import Game
-
-# 画面サイズ
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 576
+from setting import *
 
 def main():
     """
