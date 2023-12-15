@@ -173,7 +173,7 @@ class Game(object):
             # aboutを選択している場合
             if self.about:
                 # aboutを表示
-                self.display_message(screen, "PACMAN", "Game made by: @eltociear")
+                self.display_message(screen, "PACMAN like dot ear game made by: @eltociear", BLUE)
             else:
                 # メニューを表示
                 self.menu.display_frame(screen)
