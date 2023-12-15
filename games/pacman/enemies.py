@@ -34,7 +34,7 @@ class Ellipse(pygame.sprite.Sprite):
 
 class Slime(pygame.sprite.Sprite):
     # スライムのクラス
-    def __init__(self, x, y, color, width, height):
+    def __init__(self, x, y, change_x, change_y):
         # スライムの初期化
         pygame.sprite.Sprite.__init__(self)
 
