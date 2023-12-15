@@ -4,6 +4,7 @@ from enemies import *
 import tkinter
 from tkinter import messagebox # メッセージボックスに必要
 from setting import *
+import os
 
 class Game(object):
     """
@@ -27,7 +28,7 @@ class Game(object):
         # メニューを設定。後述のMenuクラスを初期化
         self.menu = Menu(("Start Game", "About", "Quit"), font_color=WHITE, font_size=60)
         # プレイヤーを初期化
-        self.player = Player(32, 128, 'assets/player.png')
+        self.player = Player(32, 128, PLAYER_IMAGE)
 
         # 水平ブロック
         self.horizontal_blocks = pygame.sprite.Group()

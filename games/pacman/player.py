@@ -25,7 +25,7 @@ class Player(pygame.sprite.Sprite):
         # 画像の左上すみの座標を設定
         self.rect.topleft = (x, y)
 
-        img = pygame.image.load('assets/player.png').convert()
+        img = pygame.image.load(PLAYER_IMAGE).convert()
 
         # 右移動のアニメーション
         self.move_right_animation = Animation(img, 32, 32)

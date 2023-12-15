@@ -42,7 +42,7 @@ class Slime(pygame.sprite.Sprite):
         self.change_y = change_y
 
         # 画像を読み込む
-        self.image = pygame.image.load("assets/slime.png").convert_alpha()
+        self.image = pygame.image.load(ENEMY_IMAGE).convert_alpha()
         # 画像を囲む四角形
         self.rect = self.image.get_rect()
         # 位置を設定
