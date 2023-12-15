@@ -4,7 +4,7 @@ from setting import *
 
 def main():
     """
-    main関数
+    PACMAN main関数
     """
 
     # Pygameの初期化 (必須)
