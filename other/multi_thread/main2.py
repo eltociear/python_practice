@@ -1,3 +1,4 @@
+from threading import Thread
 import time
 import sys
 
@@ -15,5 +16,11 @@ def func_bye():
         time.sleep(0.2)
     print() # 空文字列を出力することで、改行されないようにする
 
-func_hi()
-func_bye()
+hi_thread = Thread(target=func_hi)
+bye_thread = Thread(target=func_bye)
+
+hi_thread.start() # .start()でスレッドを開始する
+bye_thread.start() # .start()でスレッドを開始する
+
+hi_thread.join() # .join()でスレッドの終了を待つ
+bye_thread.join() # .join()でスレッドの終了を待つ
