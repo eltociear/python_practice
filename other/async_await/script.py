@@ -3,15 +3,16 @@ import time
 
 async def function_1(sec):
     print(f"{sec}秒待ちます")
-    loop = asyncio.get_event_loop() # get_event_loop()で現在スレッドで動いているイベントループを取得
-    await loop.run_in_executor(None, time.sleep, sec) # 取得したイベントループのrun_in_executor()で別スレッドで実行(第一引数executorにNoneを指定するとデフォルトのスレッドプールが使われる、第二引数には実行したい関数、第三引数以降には関数に渡す引数を指定)
+    await asyncio.sleep(sec)
     return f"{sec}秒の待機に成功しました"
 
 async def main(): # async defでコルーチン(処理をある場所で一時中断・再開できる)を定義
     print(f"main開始 {time.strftime('%X')}")
-    task1 = asyncio.create_task(function_1(1)) # create_task()で子ルーチンをラップしたタスクを作成 -> これで並行処理が可能
-    results = await asyncio.gather(function_1(2), task1) # gather()の引数にtaskやコルーチンを渡すと、並行処理が可能(コルーチンは自動的にタスクにラップされる)
-    print(results) # gather()の戻り値はタスクの実行結果をリストにまとめたもの
+    try:
+        results = await asyncio.wait_for(function_1(10), timeout = 5) # asyncio.wait_for()でコルーチンの実行を待つ、timeoutでタイムアウト時間を指定
+        print(results)
+    except asyncio.TimeoutError:
+        print("タイムアウトしました")
     print(f"main終了 {time.strftime('%X')}")
 
 if __name__ == "__main__":
