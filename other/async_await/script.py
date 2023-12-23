@@ -3,7 +3,8 @@ import time
 
 async def function_1(sec):
     print(f"{sec}秒待ちます")
-    await asyncio.sleep(sec)
+    loop = asyncio.get_event_loop() # get_event_loop()で現在スレッドで動いているイベントループを取得
+    await loop.run_in_executor(None, time.sleep, sec) # 取得したイベントループのrun_in_executor()で別スレッドで実行(第一引数executorにNoneを指定するとデフォルトのスレッドプールが使われる、第二引数には実行したい関数、第三引数以降には関数に渡す引数を指定)
     return f"{sec}秒の待機に成功しました"
 
 async def main(): # async defでコルーチン(処理をある場所で一時中断・再開できる)を定義
