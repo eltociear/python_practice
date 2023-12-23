@@ -9,11 +9,8 @@ async def function_1(sec):
 async def main(): # async defでコルーチン(処理をある場所で一時中断・再開できる)を定義
     print(f"main開始 {time.strftime('%X')}")
     task1 = asyncio.create_task(function_1(1)) # create_task()で子ルーチンをラップしたタスクを作成 -> これで並行処理が可能
-    task2 = asyncio.create_task(function_1(2))
-    await task1 # awaitでタスクが完了するまで待機
-    await task2
-    print(f"{task1.result()}") # タスクの結果を取得
-    print(f"{task2.result()}")
+    results = await asyncio.gather(function_1(2), task1) # gather()の引数にtaskやコルーチンを渡すと、並行処理が可能(コルーチンは自動的にタスクにラップされる)
+    print(results) # gather()の戻り値はタスクの実行結果をリストにまとめたもの
     print(f"main終了 {time.strftime('%X')}")
 
 if __name__ == "__main__":
