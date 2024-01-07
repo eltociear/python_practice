@@ -23,10 +23,10 @@ def draw_grid(positions):
         pygame.draw.rect(screen, YELLOW, (*top_left, TILE_SIZE, TILE_SIZE))
 
     for row in range(GLID_HEIGHT):
-        pygame.draw.line(screen, BLACK, (0, row * TILE_SIZE), (WIDTH, row * TILE_SIZE))
+        pygame.draw.line(screen, BLACK, (0, row * TILE_SIZE), (WIDTH, row * TILE_SIZE)) # 横線
 
     for col in range(GLID_WIDTH):
-        pygame.draw.line(screen, BLACK, (col * TILE_SIZE, 0), (col * TILE_SIZE, HEIGHT))
+        pygame.draw.line(screen, BLACK, (col * TILE_SIZE, 0), (col * TILE_SIZE, HEIGHT)) # 縦線
 
 def main():
     running = True
@@ -40,10 +40,10 @@ def main():
                 running = False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                x, y = pygame.mouse.get_pos()
-                col = x // TILE_SIZE
-                row = y // TILE_SIZE
-                pos = (col, row)
+                x, y = pygame.mouse.get_pos() # クリックした位置を取得
+                col = x // TILE_SIZE # クリックした位置をグリッドの位置に変換
+                row = y // TILE_SIZE # クリックした位置をグリッドの位置に変換
+                pos = (col, row) # グリッドの位置をタプルにまとめる
 
                 if pos in positions:
                     positions.remove(pos)
@@ -53,7 +53,6 @@ def main():
         screen.fill(GRAY)
         draw_grid(positions)
         pygame.display.update()
-
 
     pygame.quit()
 
