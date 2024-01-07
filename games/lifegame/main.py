@@ -9,8 +9,8 @@ YELLOW = (255, 255, 0)
 
 WIDTH, HEIGHT = 800, 800
 TILE_SIZE = 20
-GLID_WIDTH = WIDTH // TILE_SIZE
-GLID_HEIGHT = HEIGHT // TILE_SIZE
+GRID_WIDTH = WIDTH // TILE_SIZE
+GRID_HEIGHT = HEIGHT // TILE_SIZE
 FPS = 60
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -18,7 +18,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
 def gen(num):
-    return set([(random.randrange(0, GLID_HEIGHT), random.randrange(0, GLID_WIDTH)) for _ in range(num)])
+    return set([(random.randrange(0, GRID_HEIGHT), random.randrange(0, GRID_WIDTH)) for _ in range(num)])
 
 def draw_grid(positions):
     for position in positions:
@@ -26,10 +26,10 @@ def draw_grid(positions):
         top_left = (col * TILE_SIZE, row * TILE_SIZE)
         pygame.draw.rect(screen, YELLOW, (*top_left, TILE_SIZE, TILE_SIZE))
 
-    for row in range(GLID_HEIGHT):
+    for row in range(GRID_HEIGHT):
         pygame.draw.line(screen, BLACK, (0, row * TILE_SIZE), (WIDTH, row * TILE_SIZE)) # 横線
 
-    for col in range(GLID_WIDTH):
+    for col in range(GRID_WIDTH):
         pygame.draw.line(screen, BLACK, (col * TILE_SIZE, 0), (col * TILE_SIZE, HEIGHT)) # 縦線
 
 def adjust_grid(positions):
@@ -58,10 +58,10 @@ def get_neighbors(pos):
     x, y = pos
     neighbors = []
     for dx in [-1, 0, 1]:
-        if x + dx < 0 or x + dx > GLID_WIDTH:
+        if x + dx < 0 or x + dx > GRID_WIDTH:
             continue
         for dy in [-1, 0, 1]:
-            if y + dy < 0 or y + dy > GLID_HEIGHT:
+            if y + dy < 0 or y + dy > GRID_HEIGHT:
                 continue
             if dx == 0 and dy == 0:
                 continue
@@ -114,7 +114,7 @@ def main():
                     count = 0
 
                 if event.key == pygame.K_g:
-                    positions = gen(random.randrange(4, 10) * GLID_WIDTH) # Gを押すとグリッドがランダムに生成される
+                    positions = gen(random.randrange(4, 10) * GRID_WIDTH) # Gを押すとグリッドがランダムに生成される
 
         screen.fill(GRAY)
         draw_grid(positions)
