@@ -24,6 +24,8 @@ class App:
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 pg.quit()
                 sys.exit()
+            elif event.type == pg.KEYDOWN:
+                self.tetris.control(pressed_key=event.key)
 
     def run(self):
         while True:
